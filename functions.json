@@ -1,0 +1,242 @@
+[
+  {
+    "name": "ssh_ai",
+    "description": "AI 智能命令生成与执行",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "intent": {
+          "type": "string",
+          "description": "用户自然语言意图 (required)"
+        },
+        "target": {
+          "type": "string",
+          "description": "SSH 目标(可选)。如不提供,自动使用最后连接的目标。"
+        }
+      },
+      "required": [
+        "intent"
+      ]
+    }
+  },
+  {
+    "name": "ssh_analy_file",
+    "description": "Analyze saved data files. Specialized for analyzing SSH/file analysis data saved in tmp directory. This is Step 2 of two-step analysis: after ssh_analy retrieves data, use this tool to analyze the saved file.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "file": {
+          "type": "string",
+          "description": "File path to analyze. If not provided lists available files for user selection."
+        },
+        "intent": {
+          "type": "string",
+          "description": "Analysis intent (optional). If not provided extracts from file."
+        },
+        "list": {
+          "type": "boolean",
+          "description": "List all analyzable files"
+        },
+        "verbose": {
+          "type": "boolean",
+          "description": "Show detailed debug output"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "ssh_analy_file_latest",
+    "description": "Analyze latest saved data file. After ssh_analy retrieves data, this function MUST be called immediately for analysis. This is Step 2 of two-step analysis (MANDATORY). No parameters needed, automatically finds latest analysis file and presents data for LLM analysis.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "verbose": {
+          "type": "boolean",
+          "description": "Show detailed debug output"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "ssh_analy",
+    "description": "智能结果分析业务模块",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "intent": {
+          "type": "string",
+          "description": "Analysis intent or problem description. Examples: analyze firewall config, analyze network interface, analyze system performance"
+        },
+        "target": {
+          "type": "string",
+          "description": "SSH 目标(可选)。如不提供,自动使用最后连接的目标。"
+        },
+        "verbose": {
+          "type": "boolean",
+          "description": "Show detailed debug output"
+        }
+      },
+      "required": [
+        "intent"
+      ]
+    }
+  },
+  {
+    "name": "ssh_cleanup",
+    "description": "清理失效的 SSH 连接和缓存。触发:用户说 'cleanup'",
+    "parameters": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "ssh_connect",
+    "description": "建立 SSH ControlMaster 连接。触发:用户说 \"connect <target>\"。CRITICAL: 必须准确提取用户输入的 target 参数，不要修改 IP 地址、用户名或端口号。",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "description": "SSH 目标，格式: user@host[:port]。必须准确复制用户输入的完整字符串，包括 IP 地址的所有数字。例如：用户输入 \"root@192.168.11.199:212\"，必须使用完全相同的字符串，不要修改任何数字或字符。"
+        }
+      },
+      "required": [
+        "target"
+      ]
+    }
+  },
+  {
+    "name": "ssh_detect",
+    "description": "自动检测设备类型。触发:用户说 'detect <target>'",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "description": "SSH 目标(可选)。如不提供,自动使用最后连接的目标。"
+        },
+        "device_type": {
+          "type": "string",
+          "description": "设备类型 (linux/cisco/huawei/h3c/openwrt/freebsd/macos/windows/juniper/arista/mikrotik/fortinet/paloalto/unknown)"
+        }
+      },
+      "required": [
+        "device_type"
+      ]
+    }
+  },
+  {
+    "name": "ssh_set_device_type",
+    "description": "手动设置设备类型。触发:用户说 \"set device type for <target> to <type>\"",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "description": "SSH 目标(可选)。如不提供,自动使用最后连接的目标。"
+        },
+        "device_type": {
+          "type": "string",
+          "description": "设备类型 (linux/cisco/openwrt等)"
+        }
+      },
+      "required": [
+        "device_type"
+      ]
+    }
+  },
+  {
+    "name": "ssh_disconnect",
+    "description": "断开 SSH 连接。触发:用户说 'disconnect <target>'",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "description": "SSH 目标(可选)。如不提供,自动使用最后连接的目标。"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "ssh_exec_raw",
+    "description": "执行远程命令并输出原始结果 (无格式)",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "description": "SSH 目标(可选)。如不提供,自动使用最后连接的目标。"
+        },
+        "command": {
+          "type": "string",
+          "description": "要执行的命令 (required)"
+        }
+      },
+      "required": [
+        "command"
+      ]
+    }
+  },
+  {
+    "name": "ssh_exec",
+    "description": "执行远程命令并输出格式化结果",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "description": "SSH 目标(可选)。如不提供,自动使用最后连接的目标。"
+        },
+        "command": {
+          "type": "string",
+          "description": "要执行的命令 (required)"
+        }
+      },
+      "required": [
+        "command"
+      ]
+    }
+  },
+  {
+    "name": "ssh_list",
+    "description": "列出所有 SSH 连接及其状态。触发:用户说 'list'",
+    "parameters": {
+      "type": "object",
+      "properties": {},
+      "required": []
+    }
+  },
+  {
+    "name": "ssh_reconnect",
+    "description": "重新连接 SSH。触发:用户说 'reconnect <target>'",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "description": "SSH 目标(可选)。如不提供,自动使用最后连接的目标。"
+        }
+      },
+      "required": []
+    }
+  },
+  {
+    "name": "ssh_status",
+    "description": "显示 SSH 连接状态",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "description": "SSH 目标(可选)。如不提供,显示所有连接。"
+        }
+      },
+      "required": []
+    }
+  }
+]
