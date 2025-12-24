@@ -17,20 +17,53 @@ SH-AI is an AI-enhanced SSH management tool that runs within the AIChat process,
 
 ## Dependencies
 
-- [sigoden/aichat](https://github.com/sigoden/aichat)
-- [sigoden/llm-functions](https://github.com/sigoden/llm-functions)
-- [sigoden/argc](https://github.com/sigoden/argc)
+This project depends on the following open-source projects:
+
+- [sigoden/aichat](https://github.com/sigoden/aichat) - MIT License
+- [sigoden/llm-functions](https://github.com/sigoden/llm-functions) - MIT License
+- [sigoden/argc](https://github.com/sigoden/argc) - MIT License
 
 ## Installation
 
-1. Clone this repository
-2. Run the build script: `./scripts/build.sh`
-3. Use with AIChat: `aichat --agent sh-ai --session work`
+### Prerequisites
+
+- Bash shell
+- Git
+- AIChat installed and configured
+- SSH client
+
+### Steps
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/YOUR_USERNAME/sh-ai.git
+   cd sh-ai
+   ```
+
+2. **Run the build script**
+   ```bash
+   ./scripts/build.sh
+   ```
+
+3. **Configure AIChat**
+   - Ensure AIChat is installed: `aichat --version`
+   - Set up your LLM API keys if required
+
+4. **Use with AIChat**
+   ```bash
+   aichat --agent sh-ai --session work
+   ```
 
 ## Usage
 
 See the documentation in `doc/SH-AI_项目架构和索引.md` for detailed usage instructions.
 
+## Contributing
+
+Contributions are welcome! Please read the contributing guidelines before submitting pull requests.
+
 ## License
 
-MIT
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+The dependencies listed above are also licensed under the MIT License, ensuring compatibility.
