@@ -62,7 +62,7 @@ See the documentation in `doc/SH-AI_项目架构和索引.md` for detailed usage
 
 ## 项目演示
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/KcWursu8uZA?si=R790aJawterFXuDL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<video src="https://github.com/user-attachments/assets/4831174c-0d23-4743-bc2c-4d3f211b6278" controls width="100%"></video>
 
 ## Contributing
 
