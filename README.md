@@ -51,12 +51,18 @@ This project depends on the following open-source projects:
 
 4. **Use with AIChat**
    ```bash
-   aichat --agent sh-ai --session work
+   aichat --agent sh-ai --model ollama:qwen3:4b
+
    ```
 
 ## Usage
 
 See the documentation in `doc/SH-AI_项目架构和索引.md` for detailed usage instructions.
+
+
+## 项目演示
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KcWursu8uZA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Contributing
 
